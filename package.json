@@ -1,0 +1,26 @@
+{
+  "name": "local-chat-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/src/server.js",
+    "dev": "bash scripts/local.sh serve",
+    "db:start": "bash scripts/postgres.sh start",
+    "db:stop": "bash scripts/postgres.sh stop",
+    "db:setup": "node dist/src/setup-db.js",
+    "test": "npm run build && node --test dist/test/api.test.js",
+    "test:integration": "npm run build && node --test dist/test/integration.test.js",
+    "test:local": "bash scripts/local.sh test"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "7.11.6",
+    "pg": "8.11.5"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.7",
+    "typescript": "5.8.3"
+  }
+}
