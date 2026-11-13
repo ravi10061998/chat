@@ -88,6 +88,10 @@ export function createApi({ chats, messages }: ApiDependencies) {
       const url = new URL(target, "http://localhost");
       const path = url.pathname;
 
+      if (method === "GET" && path === "/") {
+        return { status: 200, body: { service: "Local Chat API", status: "running" } };
+      }
+
       if (method === "POST" && path === "/chat/create") {
         const body = await readBody();
         const chatId = await chats.create(uuid(body.userAId, "userAId"), uuid(body.userBId, "userBId"));

@@ -18,7 +18,7 @@ case "${1:-}" in
     fi
     if ! pg_ctl -D "$pg_dir" status >/dev/null; then
       pg_ctl -D "$pg_dir" -l "$local_dir/postgres.log" \
-        -o "-h 127.0.0.1 -p $pg_port" -w start
+        -o "-h 127.0.0.1 -p $pg_port -k ''" -w start
     fi
     ;;
   stop)

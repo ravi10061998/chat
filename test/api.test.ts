@@ -40,6 +40,14 @@ function fixture() {
   };
 }
 
+test("the root path reports that the API is running", async () => {
+  const { request, calls } = fixture();
+  assert.deepEqual(await request("GET", "/"), {
+    status: 200, body: { service: "Local Chat API", status: "running" },
+  });
+  assert.deepEqual(calls, []);
+});
+
 test("all six routes map validated input to their stores", async () => {
   const { request, calls, chat, message } = fixture();
   const base = `/chat/${chatId}`;
